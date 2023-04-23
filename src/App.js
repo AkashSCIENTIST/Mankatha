@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/App.css";
+import Homepage from "./Homepage";
+import CryptoStockPage from "./CryptoStockPage";
+import NseStockPage from "./NseStockPage";
+import BseStockPage from "./BseStockPage";
+import ErrorPage from "./ErrorPage";
+import Header from "./Header";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Profile from "./Profile";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Routes>
+            <Route path="/" exact element={<Homepage />} />
+            <Route path="/profile" exact element={<Profile />} />
+            <Route path="/crypto/:key" exact element={<CryptoStockPage />} />
+            <Route path="/nse/:key" exact element={<NseStockPage />} />
+            <Route path="/bse/:key" exact element={<BseStockPage />} />
+            <Route  path="*" element={<ErrorPage />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </>
   );
 }
 
